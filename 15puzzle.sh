@@ -41,18 +41,21 @@ display_board(){
 }
 
 is_win(){
-	cond_win="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 "
+	cond_win="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ."
 	now=""
     	for ((i=0; i<4; i++)); do
         	for ((j=0; j<4; j++)); do
-            		now+=" ${board[$i,$j]} "
+            		now+="${board[$i,$j]} "
         	done
     	done
-	echo $now
-    	if [ "$now" == "$cond_win" ]; then
+	now+="."
+#	echo $now
+#	echo $cond_win
+#	echo "Результат сравнения: $( [[ "$now" == "$cond_win" ]] && echo "Строка 'now' равна строке 'cond_win'" || echo "Строка 'now' не равна строке 'cond_win'")"
+    	if [[ "$now" == "$cond_win" ]]; then
         	echo "Вы собрали головоломку за $moves ходов."
-        exit 0
-    fi
+		exit 0
+    	fi
 }
 
 move(){
@@ -133,3 +136,4 @@ all_game(){
 }
 
 all_game
+
